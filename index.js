@@ -32,7 +32,7 @@ function titleToPath(title) {
 }
 
 function parseChapter(_path, fullpath) {
-    var matches = _path.match(/^\d+-(.*)\/01-chapter(\d+).markdown$/);
+    var matches = _path.match(/^\d+-(.*)\/0\d-chapter(\d+).markdown$/);
     if(!matches) {
         throw new Error('Failed to handle, '+_path);
     }
