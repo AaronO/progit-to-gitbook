@@ -186,6 +186,12 @@ function convertDir(dirpath, outdir) {
         });
     })
     .then(function(files) {
+        // Filter out non markdownish files
+        return _.filter(files, function(file) {
+            return _.first(file) === '0';
+        });
+    })
+    .then(function(files) {
         return Q.all(_.map(files, function(file) {
             return parseChapter(file, path.join(dirpath, file));
         }));
