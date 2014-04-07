@@ -1,0 +1,31 @@
+{
+    "name": "progit-to-gitbook",
+    "version": "0.0.0",
+    "description": "Quick and Dirty tool to convert ProGit to a GitBook",
+    "main": "index.js",
+    "dependencies": {
+        "fs-extra": "0.8.1",
+        "fstream-ignore": "0.0.7",
+        "lodash": "2.4.1",
+        "q": "1.0.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AaronO/progit-to-gitbook.git"
+    },
+    "keywords": [
+        "progit",
+        "gitbook",
+        "convert"
+    ],
+    "author": "Aaron O'Mullan <aaron.omullan@friendco.de>",
+    "license": "Apache v2",
+    "bugs": {
+        "url": "https://github.com/AaronO/progit-to-gitbook/issues"
+    },
+    "homepage": "https://github.com/AaronO/progit-to-gitbook"
+}
