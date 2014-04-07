@@ -25,6 +25,11 @@ function genLangs() {
     }).join('\t\n');
 }
 
+function READMEs() {
+    return _.map(LANGS, function(lang) {
+        return path.join(OUT, lang, 'README.md');
+    }).concat([path.join(OUT, 'README.md')]);
+}
 
 if(!DIR || !OUT) {
     console.error('Must provide input & output directory');
@@ -38,5 +43,17 @@ Q.all(_.map(LANGS, function(lang) {
     );
 }))
 .then(function() {
+    return fs.readFile(path.join(__dirname, '../data/README.md'), 'utf8');
+})
+.then(function(README) {
+    return Q.all(READMEs().map(function(readme) {
+        return fs.writeFile(readme, README);
+    }));
+})
+.then(function() {
     return fs.writeFile(path.join(OUT, 'LANGS.md'), genLangs());
+})
+.fail(function(err) {
+    console.log(err.stack);
 });
+
