@@ -67,9 +67,25 @@ function articleTitle(content) {
 }
 
 function fixMarkdown(content) {
+    return fixFixgures(
+        fixTitles(
+            content
+        )
+    );
+}
+
+function fixTitles(content) {
     return content.replace(/(#+) (.+) (#+)/g, function(matched, left, middle, right) {
         var newHr = repeat('#', _.max([1, left.length-1]));
         return [newHr, middle].join(' ');
+    });
+}
+
+function fixFixgures(content) {
+    return content.replace(/Insert 18333fig(\d{4}).png/g, function(matched, imgId) {
+        return '\n' +
+        '![](http://git-scm.com/figures/18333fig'+imgId+'-tn.png)' +
+        '\n';
     });
 }
 
