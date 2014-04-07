@@ -1,5 +1,10 @@
 #! /usr/bin/env node
 
+var Q = require('q');
+var _ = require('lodash');
+var path = require('path');
+
+
 var convert = require('../');
 
 var LANGS = ['en'];
