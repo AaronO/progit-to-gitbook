@@ -2,6 +2,7 @@ var Q = require('q');
 var _ = require('lodash');
 
 var path = require('path');
+var latenize = require('latenize');
 
 var fs = require('./lib/fs');
 
@@ -28,7 +29,9 @@ function convertChapter(content) {
 }
 
 function titleToPath(title) {
-    return title.toLowerCase().replace(/[ -]/g, '_');
+    return latenize(title.toLowerCase())
+    .replace(/[ -]/g, '_')
+    .replace(/[^a-zA-Z_]/g, "");
 }
 
 function parseChapter(_path, fullpath) {
