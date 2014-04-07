@@ -217,9 +217,6 @@ function convertDir(dirpath, outdir) {
             }));
         });
     })
-    .then(function() {
-        return write('README.md', 'EMPTY ... ');
-    })
     .fail(function(err) {
         console.log('ERROR');
         console.error(err);
