@@ -46,7 +46,7 @@ function parseChapter(_path, fullpath) {
     .then(function(parts) {
         return {
             num: num,
-            title: title,
+            title: chapterTitle(parts.readme),
             readme: fixMarkdown(parts.readme),
             articles: _.map(parts.articles, function(content) {
                 return {
@@ -59,7 +59,15 @@ function parseChapter(_path, fullpath) {
 }
 
 function articleTitle(content) {
-    var matches = content.match(/## (.+) ##/);
+    var matches = content.match(/## (.+) .*/);
+    if(!matches) {
+        throw Error('No title found');
+    }
+    return matches[1];
+}
+
+function chapterTitle(content) {
+    var matches = content.match(/# (.+) .*/);
     if(!matches) {
         throw Error('No title found');
     }
