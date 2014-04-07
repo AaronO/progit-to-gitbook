@@ -67,11 +67,11 @@ function articleTitle(content) {
 }
 
 function fixMarkdown(content) {
-    return fixFixgures(
-        fixTitles(
+    return fixTables(
+    fixFixgures(
+    fixTitles(
             content
-        )
-    );
+    )));
 }
 
 function fixTitles(content) {
@@ -86,6 +86,25 @@ function fixFixgures(content) {
         return '\n' +
         '![](http://git-scm.com/figures/18333fig'+imgId+'-tn.png)' +
         '\n';
+    });
+}
+
+function parseRow(row) {
+    return row.split('\t').slice(1);
+}
+
+function genRow(row) {
+    return [''].concat(row).concat(['']).join('|');
+}
+
+function fixTables(content) {
+    return content.replace(/\n\n<!-- Attention [\s\S]*?-->\n\n([\s\S]*?)\n\n/g, function(match, tableText) {
+        var lines = tableText.split('\n');
+        var head = parseRow(_.first(lines));
+        var sep = _.map(head, function(col) { return repeat('-', col.length); });
+        var body = _.rest(lines).map(parseRow);
+
+        return ['', [head].concat([sep]).concat(body).map(genRow).join('\n'), ''].join('\n\n');
     });
 }
 
