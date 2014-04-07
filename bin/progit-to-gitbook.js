@@ -7,7 +7,39 @@ var path = require('path');
 
 var convert = require('../');
 
-var LANGS = ['en'];
+var LANGS = [
+    'ar',
+    'az',
+    'be',
+    'ca',
+    'cs',
+    'de',
+    'en',
+    'eo',
+    'es-ni',
+    'es',
+    'fi',
+    'fr',
+    'hi',
+    'hu',
+    'id',
+    'it',
+    'ja',
+    'ko',
+    'mk',
+    'nl',
+    'no-nb',
+    'pl',
+    'pt-br',
+    'ro',
+    'ru',
+    'sr',
+    'th',
+    'tr',
+    'vi',
+    'zh-tw',
+    'zh',
+];
 
 var DIR = path.resolve(process.argv[2]);
 var OUT = path.resolve(process.argv[3]);
