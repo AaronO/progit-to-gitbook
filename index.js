@@ -4,6 +4,8 @@ var _ = require('lodash');
 var path = require('path');
 var latenize = require('latenize');
 
+var crypto = require('crypto');
+
 var fs = require('./lib/fs');
 
 
@@ -28,10 +30,17 @@ function convertChapter(content) {
     };
 }
 
+/*
 function titleToPath(title) {
     return latenize(title.toLowerCase())
     .replace(/[ -]/g, '_')
     .replace(/[^a-zA-Z_]/g, "");
+}
+*/
+
+// Brute force ish method by hashing
+function titleToPath(title) {
+    return crypto.createHash('md5').update(title).digest('hex');
 }
 
 function parseChapter(_path, fullpath) {
